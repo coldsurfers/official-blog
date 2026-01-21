@@ -17,7 +17,7 @@
   "dependencies": {
     "@coldsurfers/ocean-road": "^1.12.28",
     "@coldsurfers/ocean-road-design-tokens": "^1.10.8",
-    "@coldsurfers/shared-utils": "^1.1.4",
+    "@coldsurfers/shared-utils": "^1.1.5",
     "@emotion/css": "^11.13.5",
     "@emotion/native": "^11.11.0",
     "@emotion/react": "^11.14.0",
