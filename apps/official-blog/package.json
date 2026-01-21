@@ -8,6 +8,7 @@
     "check:fix": "biome check --write .",
     "check:type": "tsc --noEmit",
     "dev": "next dev",
+    "deploy:sst": "rm -rf .next && sst deploy --stage production",
     "format": "biome format .",
     "format:fix": "biome format --write .",
     "lint": "biome lint .",
@@ -30,12 +31,14 @@
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-error-boundary": "^6.1.0",
+    "sst": "3.17.25",
     "zod": "^4.3.5"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "dotenv": "^17.2.3",
     "typescript": "^5"
   }
 }
