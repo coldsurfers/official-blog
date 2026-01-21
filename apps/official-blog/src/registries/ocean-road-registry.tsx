@@ -1,6 +1,6 @@
 'use client';
 
-import storage from '@/utils/storage';
+import storage, { storageItem } from '@/utils/storage';
 import { type ColorScheme, ColorSchemeProvider, GlobalStyle } from '@coldsurfers/ocean-road';
 import { type PropsWithChildren, useMemo } from 'react';
 
@@ -22,7 +22,7 @@ export const OceanRoadThemeRegistry = ({
     }
 
     // csr
-    const storageColorScheme = storage?.get<ColorScheme>('@coldsurf-blog/theme');
+    const storageColorScheme = storage?.get<ColorScheme>(storageItem.theme);
     if (storageColorScheme) {
       return storageColorScheme;
     }
@@ -34,7 +34,7 @@ export const OceanRoadThemeRegistry = ({
   return (
     <ColorSchemeProvider colorScheme={defaultColorScheme}>
       {children}
-      <GlobalStyle />
+      <GlobalStyle themeStorageItem={storageItem.theme} />
     </ColorSchemeProvider>
   );
 };
