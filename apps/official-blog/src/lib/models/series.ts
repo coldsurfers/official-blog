@@ -14,3 +14,9 @@ export const FetchGetSeriesSearchParamsSchema = z.object({
   tag: z.string().optional(),
 });
 export type FetchGetSeriesSearchParams = z.infer<typeof FetchGetSeriesSearchParamsSchema>;
+
+export const FetchGetSeriesItemSearchParamsSchema = z.object({
+  seriesCategory: SeriesCategorySchema,
+  appLocale: AppLocaleSchema,
+});
+export type FetchGetSeriesItemSearchParams = z.infer<typeof FetchGetSeriesItemSearchParamsSchema>;
