@@ -9,6 +9,7 @@ import {
 import { pretendard } from '@/lib/pretendard';
 import { ErrorBoundaryRegistry } from '@/registries/error-boundary-registry';
 import { OceanRoadThemeRegistry } from '@/registries/ocean-road-registry';
+import { QueryClientRegistry } from '@/registries/query-client-registry';
 import { SERVICE_NAME } from '@coldsurfers/shared-utils';
 import type { Metadata } from 'next/types';
 
@@ -71,7 +72,9 @@ export default function RootLayout({
           }}
         />
         <OceanRoadThemeRegistry>
-          <ErrorBoundaryRegistry>{children}</ErrorBoundaryRegistry>
+          <ErrorBoundaryRegistry>
+            <QueryClientRegistry>{children}</QueryClientRegistry>
+          </ErrorBoundaryRegistry>
         </OceanRoadThemeRegistry>
       </body>
     </html>
