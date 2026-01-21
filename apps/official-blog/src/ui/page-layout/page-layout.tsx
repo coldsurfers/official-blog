@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link';
+import { GlobalLink } from '@coldsurfers/ocean-road/next';
 import type { PropsWithChildren } from 'react';
 import { Header } from '../header/header';
 import {
@@ -21,10 +21,10 @@ export const PageLayout = ({
   return (
     <StyledPageLayoutContainer>
       <BigTitleWrapper>
-        <Link href={'/'} style={{ width: 'auto' }}>
+        <GlobalLink href={'/'} style={{ width: 'auto' }}>
           <BigTitle as="h1">{title ?? 'COLDSURF BLOG'}</BigTitle>
           {subTitle && <SubTitle as="p">{subTitle}</SubTitle>}
-        </Link>
+        </GlobalLink>
       </BigTitleWrapper>
       <Header />
       {children}
