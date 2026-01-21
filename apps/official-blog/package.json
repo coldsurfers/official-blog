@@ -28,7 +28,8 @@
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-error-boundary": "^6.1.0",
-    "zod": "^4.3.5"
+    "zod": "^4.3.5",
+    "@notionhq/client": "2.2.14"
   },
   "devDependencies": {
     "@types/node": "^20",
