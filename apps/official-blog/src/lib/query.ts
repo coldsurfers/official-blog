@@ -173,3 +173,47 @@ export const queryProperties = (propertyName: 'tags') =>
   });
 
 export const queryTags = () => queryProperties('tags');
+
+export const queryAllSeries = cache(async ({ lang }: { lang: AppLocale }) => {
+  const filter: QueryDatabaseParameters['filter'] = {
+    and: [
+      {
+        property: 'Status',
+        status: {
+          equals: 'Published',
+        },
+      },
+      {
+        property: 'lang',
+        multi_select: {
+          contains: lang,
+        },
+      },
+    ],
+  };
+
+  filter.and.push({
+    property: 'platform',
+    multi_select: {
+      contains: 'official-blog',
+    },
+  });
+  filter.and.push({
+    property: 'OfficialBlogSeriesCategory',
+    multi_select: {
+      is_not_empty: true,
+    },
+  });
+
+  const result = await notionInstance.databases.query({
+    database_id: notionDatabaseIds.blog ?? '',
+    sorts: [
+      {
+        property: 'Publish date',
+        direction: 'descending',
+      },
+    ],
+    filter,
+  });
+  return parseSeriesItems(result);
+});
