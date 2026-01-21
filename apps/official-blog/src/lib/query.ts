@@ -3,6 +3,7 @@ import type {
   QueryDatabaseParameters,
 } from '@notionhq/client/build/src/api-endpoints';
 import { cache } from 'react';
+import { match } from 'ts-pattern';
 import type { AppLocale } from './models/app-locale';
 import type { SeriesCategory } from './models/series';
 import notionInstance, { notionDatabaseIds } from './notion-instance';
@@ -124,3 +125,51 @@ export const querySeriesItem = cache(
     return null;
   }
 );
+
+export const queryProperties = (propertyName: 'tags') =>
+  cache(async () => {
+    const filter: QueryDatabaseParameters['filter'] = {
+      and: [
+        {
+          property: 'Status',
+          status: {
+            equals: 'Published',
+          },
+        },
+      ],
+    };
+    filter.and.push({
+      property: 'platform',
+      multi_select: {
+        contains: 'official-blog',
+      },
+    });
+    filter.and.push({
+      property: 'OfficialBlogSeriesCategory',
+      multi_select: {
+        is_not_empty: true,
+      },
+    });
+    const response = await notionInstance.databases.query({
+      database_id: notionDatabaseIds.blog ?? '',
+      filter,
+    });
+    return match(propertyName)
+      .with('tags', () => {
+        const tags = response.results
+          .map((result) => {
+            const page = result as PageObjectResponse;
+            if (page.properties.tags.type === 'multi_select') {
+              return page.properties.tags.multi_select;
+            }
+            return null;
+          })
+          .filter((value) => value !== null)
+          .flat();
+        // id 값으로  중복  제거
+        return Array.from(new Map(tags.map((value) => [value.id, value])).values());
+      })
+      .exhaustive();
+  });
+
+export const queryTags = () => queryProperties('tags');
