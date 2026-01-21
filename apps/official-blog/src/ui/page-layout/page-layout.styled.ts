@@ -8,6 +8,9 @@ export const StyledPageLayoutContainer = styled.main`
   max-width: 1728px;
   margin: 2rem auto;
 
+  padding-left: 1rem;
+  padding-right: 1rem;
+
   ${media.large(css`
     max-width: 1536px;
   `)}
