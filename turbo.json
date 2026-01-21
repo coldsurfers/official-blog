@@ -1,0 +1,27 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": ["pnpm-lock.yaml"],
+  "tasks": {
+    "lint": {
+      "outputs": []
+    },
+    "lint:fix": {
+      "outputs": []
+    },
+    "format": {
+      "outputs": []
+    },
+    "format:fix": {
+      "outputs": []
+    },
+    "check": {
+      "outputs": []
+    },
+    "check:fix": {
+      "outputs": []
+    },
+    "check:type": {
+      "cache": true
+    }
+  }
+}
