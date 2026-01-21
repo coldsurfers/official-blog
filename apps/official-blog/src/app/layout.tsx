@@ -1,4 +1,5 @@
 import { pretendard } from '@/lib/pretendard';
+import { ErrorBoundaryRegistry } from '@/registries/error-boundary-registry';
 import { OceanRoadThemeRegistry } from '@/registries/ocean-road-registry';
 
 export default function RootLayout({
@@ -9,7 +10,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={pretendard.className}>
-        <OceanRoadThemeRegistry>{children}</OceanRoadThemeRegistry>
+        <OceanRoadThemeRegistry>
+          <ErrorBoundaryRegistry>{children}</ErrorBoundaryRegistry>
+        </OceanRoadThemeRegistry>
       </body>
     </html>
   );
