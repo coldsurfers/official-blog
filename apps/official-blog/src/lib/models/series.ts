@@ -8,6 +8,8 @@ export const SeriesCategorySchema = z.union([
 ]);
 export type SeriesCategory = z.infer<typeof SeriesCategorySchema>;
 
+export const AllSeriesCategories: SeriesCategory[] = ['news', 'culture', 'voice'];
+
 export const FetchGetSeriesSearchParamsSchema = z.object({
   seriesCategory: SeriesCategorySchema,
   appLocale: AppLocaleSchema,
@@ -20,3 +22,19 @@ export const FetchGetSeriesItemSearchParamsSchema = z.object({
   appLocale: AppLocaleSchema,
 });
 export type FetchGetSeriesItemSearchParams = z.infer<typeof FetchGetSeriesItemSearchParamsSchema>;
+
+export const SeriesItemSchema = z.object({
+  id: z.string(),
+  createdTime: z.string(),
+  lastEditedTime: z.string(),
+  dateLocale: z.string(),
+  slug: z.string(),
+  title: z.any().array(), // RichTextItemResponse[]
+  subTitle: z.string().optional(),
+  status: z.string(),
+  writer: z.object({}), // PartialUserObjectResponse
+  lang: AppLocaleSchema,
+  officialBlogSeriesCategory: SeriesCategorySchema.optional(),
+  thumbnailUrl: z.string().nullable(),
+});
+export type SeriesItem = z.infer<typeof SeriesItemSchema>;
