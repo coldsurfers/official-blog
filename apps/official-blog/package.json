@@ -30,6 +30,7 @@
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-error-boundary": "^6.1.0",
+    "sst": "3.17.25",
     "zod": "^4.3.5"
   },
   "devDependencies": {
