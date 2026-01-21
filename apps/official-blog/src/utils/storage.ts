@@ -1,6 +1,10 @@
 import { tryParse } from '@coldsurfers/shared-utils';
 
-export type StorageItem = '@coldsurf-blog/theme';
+export const storageItem = {
+  theme: '@coldsurf-blog/theme',
+} as const;
+
+export type StorageItem = (typeof storageItem)[keyof typeof storageItem];
 
 const storage =
   typeof window !== 'undefined'
