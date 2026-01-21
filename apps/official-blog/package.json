@@ -8,6 +8,7 @@
     "check:fix": "biome check --write .",
     "check:type": "tsc --noEmit",
     "dev": "next dev",
+    "deploy:sst": "rm -rf .next && sst deploy --stage production",
     "format": "biome format .",
     "format:fix": "biome format --write .",
     "lint": "biome lint .",
@@ -37,6 +38,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "dotenv": "^17.2.3",
     "typescript": "^5"
   }
 }
