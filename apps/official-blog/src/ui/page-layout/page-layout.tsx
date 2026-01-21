@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import type { PropsWithChildren } from 'react';
 import { Header } from '../header/header';
 import {
@@ -19,7 +18,6 @@ export const PageLayout = ({
   title?: string;
   subTitle?: string;
 }>) => {
-  const pathname = usePathname();
   return (
     <StyledPageLayoutContainer>
       <BigTitleWrapper>
@@ -28,9 +26,7 @@ export const PageLayout = ({
           {subTitle && <SubTitle as="p">{subTitle}</SubTitle>}
         </Link>
       </BigTitleWrapper>
-      {process.env.NODE_ENV === 'development' && pathname === '/blog/about/paul' ? null : (
-        <Header />
-      )}
+      <Header />
       {children}
     </StyledPageLayoutContainer>
   );
