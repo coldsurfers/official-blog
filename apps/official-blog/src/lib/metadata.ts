@@ -16,6 +16,7 @@ import type { SeriesCategory } from './models/series';
 export const COMMON_META_TITLE = `OFFICIAL BLOG, ${SERVICE_NAME}`;
 export const COMMON_META_DESCRIPTION = `${SERVICE_NAME}의 최신 소식`;
 export const META_SITE_URL = 'https://blog.coldsurf.io';
+export const SITE_MAP_URL = 'https://blog.coldsurf.io/sitemap.xml' as const;
 export const LD_JSON_SAME_AS_LINKS = [
   META_SITE_URL,
   'https://coldsurf.io',
