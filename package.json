@@ -37,5 +37,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.14.0"
+  "packageManager": "pnpm@10.14.0",
+  "pnpm": {
+    "patchedDependencies": {
+      "react-notion-x@7.2.5": "patches/react-notion-x@7.2.5.patch"
+    }
+  }
 }

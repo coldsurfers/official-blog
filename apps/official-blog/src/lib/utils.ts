@@ -1,3 +1,4 @@
+import { match } from 'ts-pattern';
 import type { SeriesCategory } from './models/series';
 
 export const generateSeriesHref = ({
@@ -28,4 +29,12 @@ export const generateSeriesItemHref = (seriesCategory: SeriesCategory, slug: str
       slug,
     },
   };
+};
+
+export const convertSeriesCategoryToTitle = (seriesCategory: SeriesCategory) => {
+  return match(seriesCategory)
+    .with('news', () => 'COLDSURF BLOG: NEWS')
+    .with('culture', () => 'COLDSURF BLOG: CULTURE')
+    .with('voice', () => 'COLDSURF BLOG: VOICE')
+    .exhaustive();
 };
