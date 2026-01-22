@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { TagItem } from '../tag-item';
 import { StyledSectionTagList } from './tag-list.styled';
