@@ -10,7 +10,9 @@ import { pretendard } from '@/lib/pretendard';
 import { ErrorBoundaryRegistry } from '@/registries/error-boundary-registry';
 import { OceanRoadThemeRegistry } from '@/registries/ocean-road-registry';
 import { QueryClientRegistry } from '@/registries/query-client-registry';
-import { SERVICE_NAME } from '@coldsurfers/shared-utils';
+import { AppLayout } from '@/ui/app-layout';
+import { AppFooter } from '@coldsurfers/ocean-road/next';
+import { APP_STORE_URL, PLAYSTORE_URL, SERVICE_NAME, SNS_LINKS } from '@coldsurfers/shared-utils';
 import type { Metadata } from 'next/types';
 
 export const revalidate = 3600;
@@ -73,7 +75,17 @@ export default function RootLayout({
         />
         <OceanRoadThemeRegistry>
           <ErrorBoundaryRegistry>
-            <QueryClientRegistry>{children}</QueryClientRegistry>
+            <QueryClientRegistry>
+              <AppLayout>
+                {children}
+                <AppFooter
+                  appStoreUrl={APP_STORE_URL}
+                  playStoreUrl={PLAYSTORE_URL}
+                  instagramUrl={SNS_LINKS.INSTAGRAM}
+                  xUrl={SNS_LINKS.X}
+                />
+              </AppLayout>
+            </QueryClientRegistry>
           </ErrorBoundaryRegistry>
         </OceanRoadThemeRegistry>
       </body>
