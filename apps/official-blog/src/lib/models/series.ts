@@ -9,7 +9,7 @@ export const SeriesCategorySchema = z.union([
 ]);
 export type SeriesCategory = z.infer<typeof SeriesCategorySchema>;
 
-export const AllSeriesCategories: SeriesCategory[] = ['news', 'culture', 'voice', 'tech'];
+export const AllSeriesCategories: SeriesCategory[] = ['news', 'culture', 'voice'];
 
 export const FetchGetSeriesSearchParamsSchema = z.object({
   seriesCategory: SeriesCategorySchema,
