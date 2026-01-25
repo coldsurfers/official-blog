@@ -9,6 +9,8 @@ import type { SeriesCategory } from './models/series';
 import notionInstance, { notionDatabaseIds } from './notion-instance';
 import { parseSeriesItems } from './parser';
 
+const isDevMode = process.env.NODE_ENV === 'development';
+
 export const querySeries = cache(
   async ({
     seriesCategory,
@@ -19,13 +21,26 @@ export const querySeries = cache(
     lang: AppLocale;
     tag?: string;
   }) => {
+    const statusFilter = [
+      {
+        property: 'Status',
+        status: {
+          equals: 'Published',
+        },
+      },
+    ];
+    if (isDevMode) {
+      statusFilter.push({
+        property: 'Status',
+        status: {
+          equals: 'Reviewing',
+        },
+      });
+    }
     const filter: QueryDatabaseParameters['filter'] = {
       and: [
         {
-          property: 'Status',
-          status: {
-            equals: 'Published',
-          },
+          or: statusFilter,
         },
         {
           property: 'lang',
@@ -35,6 +50,7 @@ export const querySeries = cache(
         },
       ],
     };
+
     if (tag) {
       filter.and.push({
         property: 'tags',
