@@ -5,11 +5,13 @@ import {
   MenuItem,
   Text,
   breakpoints,
+  media,
   semantics,
   useColorScheme,
 } from '@coldsurfers/ocean-road';
 import { AppFooter, AppHeader, GlobalLink } from '@coldsurfers/ocean-road/next';
 import { APP_STORE_URL, PLAYSTORE_URL, SNS_LINKS } from '@coldsurfers/shared-utils';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import type { PropsWithChildren } from 'react';
 
@@ -18,6 +20,9 @@ const Layout = styled.div`
     padding-top: 88px;
     margin-left: auto;
     margin-right: auto;
+    ${media.medium(css`
+      padding-top: 120px;
+    `)}
 `;
 
 const AccordionMenuText = styled(Text)`
