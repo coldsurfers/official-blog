@@ -1,7 +1,7 @@
 'use client';
 
-import { ColorSchemeToggle, breakpoints, useColorScheme } from '@coldsurfers/ocean-road';
-import { AppFooter, AppHeader } from '@coldsurfers/ocean-road/next';
+import { ColorSchemeToggle, MenuItem, breakpoints, useColorScheme } from '@coldsurfers/ocean-road';
+import { AppFooter, AppHeader, GlobalLink } from '@coldsurfers/ocean-road/next';
 import { APP_STORE_URL, PLAYSTORE_URL, SNS_LINKS } from '@coldsurfers/shared-utils';
 import styled from '@emotion/styled';
 import type { PropsWithChildren } from 'react';
@@ -19,7 +19,19 @@ export const AppLayout = ({ children }: PropsWithChildren) => {
     <Layout>
       <AppHeader.FloatingHeader
         serviceName="COLDSURF, BLOG"
-        HeaderMenuItemComponent={null}
+        HeaderMenuItemComponent={
+          <>
+            <GlobalLink href="https://coldsurf.io">
+              <MenuItem>라이브 이벤트</MenuItem>
+            </GlobalLink>
+            <GlobalLink href="https://coldsurf.io/browse">
+              <MenuItem>탐색하기</MenuItem>
+            </GlobalLink>
+            <GlobalLink href="https://coldsurf.io/feed">
+              <MenuItem>새 소식</MenuItem>
+            </GlobalLink>
+          </>
+        }
         ColorSchemeToggleComponent={
           <ColorSchemeToggle
             onToggle={({ setTheme }) => setTheme(theme.name === 'darkMode' ? 'light' : 'dark')}
