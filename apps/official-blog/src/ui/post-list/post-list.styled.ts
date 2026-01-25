@@ -12,13 +12,12 @@ export const StyledPostListContainer = styled.div`
 
 export const StyledPostsGridContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0px, 1fr));
   gap: 0px 2rem;
   margin-bottom: 2rem;
 
   ${media.medium(css`
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
+    grid-template-columns: repeat(2, minmax(0px, 1fr));
+    gap: 0.85rem;
   `)}
 `;
