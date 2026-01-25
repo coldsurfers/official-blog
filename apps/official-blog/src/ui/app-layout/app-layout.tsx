@@ -1,6 +1,13 @@
 'use client';
 
-import { ColorSchemeToggle, MenuItem, breakpoints, useColorScheme } from '@coldsurfers/ocean-road';
+import {
+  ColorSchemeToggle,
+  MenuItem,
+  Text,
+  breakpoints,
+  semantics,
+  useColorScheme,
+} from '@coldsurfers/ocean-road';
 import { AppFooter, AppHeader, GlobalLink } from '@coldsurfers/ocean-road/next';
 import { APP_STORE_URL, PLAYSTORE_URL, SNS_LINKS } from '@coldsurfers/shared-utils';
 import styled from '@emotion/styled';
@@ -11,6 +18,15 @@ const Layout = styled.div`
     padding-top: 88px;
     margin-left: auto;
     margin-right: auto;
+`;
+
+const AccordionMenuText = styled(Text)`
+  font-size: 24px;
+  border-bottom: 1px solid ${semantics.color.border[2]};
+  padding-bottom: 16px;
+  color: ${semantics.color.foreground[1]};
+  font-weight: 550;
+  width: 100%;
 `;
 
 export const AppLayout = ({ children }: PropsWithChildren) => {
@@ -33,6 +49,37 @@ export const AppLayout = ({ children }: PropsWithChildren) => {
           </>
         }
         ColorSchemeToggleComponent={
+          <ColorSchemeToggle
+            onToggle={({ setTheme }) => setTheme(theme.name === 'darkMode' ? 'light' : 'dark')}
+          />
+        }
+      />
+      <AppHeader.FullScreenMobileAccordionDrawer
+        standalone={false}
+        data={[
+          {
+            accordionKey: 'live-events',
+            title: '라이브 이벤트',
+          },
+          {
+            accordionKey: 'browse',
+            title: '탐색하기',
+          },
+          {
+            accordionKey: 'feed',
+            title: '새 소식',
+          },
+        ]}
+        renderTrigger={(item) => {
+          return (
+            <GlobalLink href={`https://coldsurf.io/${item.accordionKey}`}>
+              <AccordionMenuText as="p">{item.title}</AccordionMenuText>
+            </GlobalLink>
+          );
+        }}
+        renderExpanded={() => null}
+        ColorSchemeToggleComponent={
+          // @TODO: Singleton ColorSchemeToggle on ocean-road
           <ColorSchemeToggle
             onToggle={({ setTheme }) => setTheme(theme.name === 'darkMode' ? 'light' : 'dark')}
           />
