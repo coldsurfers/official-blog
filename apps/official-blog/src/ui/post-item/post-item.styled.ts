@@ -90,7 +90,7 @@ export const StyledPostThumbnail = styled.img`
 
 export const StyledPostPlatformText = styled(Text)`
   margin-top: 1rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.25rem;
   font-size: 18px;
 
   color: ${semantics.color.foreground[4]};
@@ -98,6 +98,10 @@ export const StyledPostPlatformText = styled(Text)`
   &:hover {
     text-decoration: underline;
   }
+
+  ${media.medium(css`
+    font-size: 16px;
+  `)}
 `;
 
 export const StyledPostTitleText = styled(Text)`
@@ -106,6 +110,8 @@ export const StyledPostTitleText = styled(Text)`
   display: inline-block;
   width: 100%;
   max-width: 100%;
+
+  font-size: 22px;
 
   color: ${semantics.color.foreground[1]};
 
@@ -123,6 +129,10 @@ export const StyledPostTitleText = styled(Text)`
     ${media.large(css`
       font-size: 20px;
     `)}
+
+    ${media.medium(css`
+      font-size: 18px;
+    `)}
   }
 `;
 
@@ -131,6 +141,10 @@ export const StyledPostSubTitleText = styled(Text)`
   margin-bottom: 0.5rem;
   font-size: 16px;
   color: ${semantics.color.foreground[4]};
+
+  ${media.medium(css`
+    font-size: 14px;
+  `)}
 `;
 
 export const StyledPostDateText = styled(Text)`

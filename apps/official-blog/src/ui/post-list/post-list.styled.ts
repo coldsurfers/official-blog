@@ -4,7 +4,6 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 export const StyledPostListContainer = styled.div`
-  margin-top: 6.5rem;
 
   ${media.medium(css`
     margin-top: 2rem;
@@ -14,7 +13,7 @@ export const StyledPostListContainer = styled.div`
 export const StyledPostsGridContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(${PAGINATION_PER_LINE.DEFAULT}, minmax(0px, 1fr));
-  gap: 0px 2rem;
+  gap: 0px 1.5rem;
   margin-bottom: 2rem;
 
   ${media.large(css`
