@@ -48,8 +48,8 @@ importers:
   apps/official-blog:
     dependencies:
       '@coldsurfers/ocean-road':
-        specifier: ^1.12.31
-        version: 1.12.31(4051ebe5030b6bc4f0ae69bef2273d3b)
+        specifier: ^1.12.40
+        version: 1.12.40(106d68d319140570a70a2aedfb6c44bd)
       '@coldsurfers/ocean-road-design-tokens':
         specifier: ^1.10.8
         version: 1.10.8
@@ -540,8 +540,8 @@ packages:
   '@coldsurfers/ocean-road-design-tokens@1.10.8':
     resolution: {integrity: sha512-mjkNIwuEktuSGcyYQXTRuqTUUzW7fRAeZC1uG5rjRItDcY+dwruZXoryOVi3iNidXY6XSRe6ExnvJ9jkTT6uyQ==, tarball: https://npm.pkg.github.com/download/@coldsurfers/ocean-road-design-tokens/1.10.8/f2a94362d591487868c91fd35d065c33d00ceb00}
 
-  '@coldsurfers/ocean-road@1.12.31':
-    resolution: {integrity: sha512-3PgWTMRe6/jjfEuBNlW3zs8gMBMT0HapGJSMejduyafaI9zOR8Ok3uRQ1YSLgKcm3jFwM+0GlVa5Y8zbbtFzHg==, tarball: https://npm.pkg.github.com/download/@coldsurfers/ocean-road/1.12.31/871bc971b1a91aeade2be50704a783034b456b09}
+  '@coldsurfers/ocean-road@1.12.40':
+    resolution: {integrity: sha512-pDfmoJqqM05CrO2yRjdMFGFmUU+ISmWB2YftjxI0b182mHJoHSUN91aw8lrMlbB/VkcFfAKGur8qlqDuIkwNCA==, tarball: https://npm.pkg.github.com/download/@coldsurfers/ocean-road/1.12.40/cce614e6ca13e3a4a5bca86eb28ba76799c9e9f3}
     peerDependencies:
       '@coldsurfers/ocean-road-design-tokens': ^1.10.7
       '@emotion/css': ^11.10.6
@@ -551,6 +551,7 @@ packages:
       framer-motion: ^11.11.13
       lucide-react: ^0.469.0
       lucide-react-native: ^0.468.0
+      overlay-kit: ^1.8.6
       react: '>= 19.1.0'
       react-dom: '>= 19.1.4'
       react-native-reanimated: '>= 3.17.1'
@@ -3196,6 +3197,12 @@ packages:
   outdent@0.5.0:
     resolution: {integrity: sha512-/jHxFIzoMXdqPzTaCpFzAAWhpkSjZPF4Vsn6jAfNpmbH/ymsmd7Qc6VE9BGn0L6YMj6uwpQLxCECpus4ukKS9Q==}
 
+  overlay-kit@1.8.6:
+    resolution: {integrity: sha512-0JeZ+QcoMCEgW4OndzCJger/eHZHGan7M9iQ6sHxrMPVwLyqSN8665CdciNrNjzorV3xGtqVeZUs2o4rt4ddYw==}
+    peerDependencies:
+      react: ^16.8 || ^17 || ^18 || ^19
+      react-dom: ^16.8 || ^17 || ^18 || ^19
+
   own-keys@1.0.1:
     resolution: {integrity: sha512-qFOyK5PjiWZd+QQIh+1jhdb9LpxTF0qs7Pm8o5QHYZ0M3vKqSqzsZaEB6oWlxZ+q2sJBMI/Ktgd2N5ZwQoRHfg==}
     engines: {node: '>= 0.4'}
@@ -4867,7 +4874,7 @@ snapshots:
     dependencies:
       open-color: 1.9.1
 
-  '@coldsurfers/ocean-road@1.12.31(4051ebe5030b6bc4f0ae69bef2273d3b)':
+  '@coldsurfers/ocean-road@1.12.40(106d68d319140570a70a2aedfb6c44bd)':
     dependencies:
       '@coldsurfers/ocean-road-design-tokens': 1.10.8
       '@emotion/css': 11.13.5
@@ -4877,6 +4884,7 @@ snapshots:
       framer-motion: 12.27.5(@emotion/is-prop-valid@1.4.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       lucide-react: 0.562.0(react@19.2.3)
       lucide-react-native: 0.468.0(react-native-svg@15.15.1(react-native@0.83.1(@babel/core@7.28.6)(@types/react@19.2.9)(react@19.2.3))(react@19.2.3))(react-native@0.83.1(@babel/core@7.28.6)(@types/react@19.2.9)(react@19.2.3))(react@19.2.3)
+      overlay-kit: 1.8.6(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
       react-native-reanimated: 4.2.1(react-native-worklets@0.6.1(@babel/core@7.28.6)(react-native@0.83.1(@babel/core@7.28.6)(@types/react@19.2.9)(react@19.2.3))(react@19.2.3))(react-native@0.83.1(@babel/core@7.28.6)(@types/react@19.2.9)(react@19.2.3))(react@19.2.3)
@@ -7968,6 +7976,11 @@ snapshots:
       word-wrap: 1.2.5
 
   outdent@0.5.0: {}
+
+  overlay-kit@1.8.6(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
+    dependencies:
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
 
   own-keys@1.0.1:
     dependencies:

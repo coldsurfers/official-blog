@@ -19,13 +19,13 @@ export const PostListWithPagination = ({
 }: SeriesListAllProps) => {
   return (
     <>
-      <PostList postItems={postItems} page={currentPage} />
       <Pagination
         currentPage={currentPage}
         totalPage={totalPage}
         seriesCategory={seriesCategory}
         appLocale={'ko'}
       />
+      <PostList postItems={postItems} page={currentPage} />
     </>
   );
 };

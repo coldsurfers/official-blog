@@ -45,7 +45,7 @@ export function Pagination({ currentPage, seriesCategory, totalPage }: Paginatio
 
   return (
     <StyledPaginationContainer>
-      <Text as="p">
+      <Text as="p" style={{ margin: 'unset' }}>
         {currentPage}/{totalPage}
       </Text>
       <GlobalLink href={seriesHrefPrev}>
