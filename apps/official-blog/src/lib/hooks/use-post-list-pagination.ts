@@ -1,3 +1,5 @@
+'use client';
+
 import { breakpoints } from '@coldsurfers/ocean-road';
 import { useCallback, useEffect, useState } from 'react';
 import { PAGINATION_PER_LINE, PAGINATION_PER_PAGE } from '../constants';
@@ -9,6 +11,12 @@ type Pagination = {
 
 export function usePostListPagination() {
   const calculate = useCallback<() => Pagination>(() => {
+    if (typeof document === 'undefined') {
+      return {
+        perPage: PAGINATION_PER_PAGE,
+        perLine: PAGINATION_PER_LINE.DEFAULT,
+      };
+    }
     if (document.documentElement.clientWidth <= breakpoints.medium) {
       return {
         perPage: PAGINATION_PER_PAGE,
@@ -27,7 +35,7 @@ export function usePostListPagination() {
     };
   }, []);
 
-  const [pagination, setPagination] = useState<Pagination>(calculate());
+  const [pagination, setPagination] = useState<Pagination>(() => calculate());
 
   useEffect(() => {
     function onResize() {
