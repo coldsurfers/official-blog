@@ -1,5 +1,6 @@
 import { breakpoints } from '@coldsurfers/ocean-road';
 import { useCallback, useEffect, useState } from 'react';
+import { PAGINATION_PER_LINE, PAGINATION_PER_PAGE } from '../constants';
 
 type Pagination = {
   perLine: number;
@@ -10,13 +11,19 @@ export function usePostListPagination() {
   const calculate = useCallback<() => Pagination>(() => {
     if (document.documentElement.clientWidth <= breakpoints.medium) {
       return {
-        perPage: 10,
-        perLine: 2,
+        perPage: PAGINATION_PER_PAGE,
+        perLine: PAGINATION_PER_LINE.MEDIUM,
+      };
+    }
+    if (document.documentElement.clientWidth <= breakpoints.large) {
+      return {
+        perPage: PAGINATION_PER_PAGE,
+        perLine: PAGINATION_PER_LINE.LARGE,
       };
     }
     return {
-      perPage: 9,
-      perLine: 3,
+      perPage: PAGINATION_PER_PAGE,
+      perLine: PAGINATION_PER_LINE.DEFAULT,
     };
   }, []);
 
