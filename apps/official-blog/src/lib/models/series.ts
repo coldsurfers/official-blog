@@ -5,6 +5,7 @@ export const SeriesCategorySchema = z.union([
   z.literal('news'),
   z.literal('culture'),
   z.literal('voice'),
+  z.literal('tech'),
 ]);
 export type SeriesCategory = z.infer<typeof SeriesCategorySchema>;
 
