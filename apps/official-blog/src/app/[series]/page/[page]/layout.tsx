@@ -2,9 +2,9 @@ import { createBlogError } from '@/lib/error';
 import { fetchSeries } from '@/lib/fetchers';
 import { generateLogListMetadata } from '@/lib/metadata';
 import { SeriesCategorySchema } from '@/lib/models/series';
+import { seriesUtils } from '@/lib/utils';
 import type { Metadata } from 'next/types';
 import type { ReactNode } from 'react';
-import { match } from 'ts-pattern';
 
 export const dynamic = 'force-static';
 export const revalidate = 3600;
@@ -57,22 +57,12 @@ export async function generateMetadata({
       }
     );
   }
-  // @TODO: 동일 패턴 하나로 util화
-  const metaTitle = match(seriesCategoryValidation.data)
-    .with('news', () => 'COLDSURF Blog: NEWS')
-    .with('culture', () => 'COLDSURF Blog: CULTURE')
-    .with('voice', () => 'COLDSURF Blog: VOICE')
-    .otherwise(() => '');
 
-  const metaDescription = match(seriesCategoryValidation.data)
-    .with('news', () => 'Article about news')
-    .with('culture', () => 'Article about culture')
-    .with('voice', () => `Article about editor's note`)
-    .otherwise(() => '');
+  const { title, description } = seriesUtils.category.getMeta(seriesCategoryValidation.data);
 
   return generateLogListMetadata({
-    title: metaTitle,
-    description: metaDescription,
+    title,
+    description,
     seriesCategory: seriesCategoryValidation.data,
   });
 }

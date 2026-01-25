@@ -31,10 +31,45 @@ export const generateSeriesItemHref = (seriesCategory: SeriesCategory, slug: str
   };
 };
 
-export const convertSeriesCategoryToTitle = (seriesCategory: SeriesCategory) => {
-  return match(seriesCategory)
-    .with('news', () => 'COLDSURF BLOG: NEWS')
-    .with('culture', () => 'COLDSURF BLOG: CULTURE')
-    .with('voice', () => 'COLDSURF BLOG: VOICE')
-    .otherwise(() => '');
+export const seriesUtils = {
+  category: {
+    getHeaderHrefData: ({
+      seriesParam,
+    }: { seriesParam: string }): {
+      href: string;
+      title: string;
+      isActive: boolean;
+    }[] => {
+      return [
+        { href: '/news', title: 'NEWS', isActive: seriesParam === 'news' },
+        { href: '/culture', title: 'CULTURE', isActive: seriesParam === 'culture' },
+        { href: '/voice', title: 'VOICE', isActive: seriesParam === 'voice' },
+        { href: '/tech', title: 'TECH', isActive: seriesParam === 'tech' },
+      ];
+    },
+    getMeta: (series: SeriesCategory) => {
+      return {
+        title: match(series)
+          .with('news', () => 'COLDSURF Blog: NEWS')
+          .with('culture', () => 'COLDSURF Blog: CULTURE')
+          .with('voice', () => 'COLDSURF Blog: VOICE')
+          .with('tech', () => 'COLDSURF Blog: TECH')
+          .exhaustive(),
+        description: match(series)
+          .with('news', () => 'Article about news')
+          .with('culture', () => 'Article about culture')
+          .with('voice', () => `Article about editor's note`)
+          .with('tech', () => 'Article about tech')
+          .exhaustive(),
+      };
+    },
+    convertSeriesCategoryToTitle: (seriesCategory: SeriesCategory) => {
+      return match(seriesCategory)
+        .with('news', () => 'COLDSURF BLOG: NEWS')
+        .with('culture', () => 'COLDSURF BLOG: CULTURE')
+        .with('voice', () => 'COLDSURF BLOG: VOICE')
+        .with('tech', () => 'COLDSURF BLOG: TECH')
+        .exhaustive();
+    },
+  },
 };

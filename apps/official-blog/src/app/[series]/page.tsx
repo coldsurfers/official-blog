@@ -1,7 +1,7 @@
 import { createBlogError } from '@/lib/error';
 import { fetchSeries } from '@/lib/fetchers';
 import { SeriesCategorySchema } from '@/lib/models/series';
-import { convertSeriesCategoryToTitle } from '@/lib/utils';
+import { seriesUtils } from '@/lib/utils';
 import { PageLayout } from '@/ui/page-layout';
 import { PostListWithPagination } from '@/ui/post-list-with-pagination';
 
@@ -31,7 +31,7 @@ export default async function OfficialBlogSeriesPage(props: {
     tag: undefined,
   });
   return (
-    <PageLayout title={convertSeriesCategoryToTitle(seriesCategory)}>
+    <PageLayout title={seriesUtils.category.convertSeriesCategoryToTitle(seriesCategory)}>
       <PostListWithPagination
         seriesCategory={seriesCategory}
         postItems={postItems}

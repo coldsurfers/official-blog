@@ -1,5 +1,6 @@
 'use client';
 
+import { seriesUtils } from '@/lib/utils';
 import { useParams, usePathname } from 'next/navigation';
 import { memo, useMemo } from 'react';
 import {
@@ -27,19 +28,10 @@ export const Header = () => {
     return params.series as string;
   }, [params.series]);
 
-  const data = useMemo<
-    {
-      href: string;
-      title: string;
-      isActive: boolean;
-    }[]
-  >(() => {
-    return [
-      { href: '/news', title: 'NEWS', isActive: seriesParam === 'news' },
-      { href: '/culture', title: 'CULTURE', isActive: seriesParam === 'culture' },
-      { href: '/voice', title: 'VOICE', isActive: seriesParam === 'voice' },
-    ];
-  }, [seriesParam]);
+  const data = useMemo(
+    () => seriesUtils.category.getHeaderHrefData({ seriesParam }),
+    [seriesParam]
+  );
 
   return (
     <StyledHeaderBigContainer>
