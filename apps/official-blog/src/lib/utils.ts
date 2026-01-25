@@ -36,5 +36,5 @@ export const convertSeriesCategoryToTitle = (seriesCategory: SeriesCategory) => 
     .with('news', () => 'COLDSURF BLOG: NEWS')
     .with('culture', () => 'COLDSURF BLOG: CULTURE')
     .with('voice', () => 'COLDSURF BLOG: VOICE')
-    .exhaustive();
+    .otherwise(() => '');
 };

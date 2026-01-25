@@ -37,13 +37,13 @@ export async function generateMetadata(props: {
     .with('news', () => 'COLDSURF Blog: NEWS')
     .with('culture', () => 'COLDSURF Blog: CULTURE')
     .with('voice', () => 'COLDSURF Blog: VOICE')
-    .exhaustive();
+    .otherwise(() => '');
 
   const metaDescription = match(seriesCategoryValidation.data)
     .with('news', () => 'Article about news')
     .with('culture', () => 'Article about culture')
     .with('voice', () => `Article about editor's note`)
-    .exhaustive();
+    .otherwise(() => '');
 
   return generateLogListMetadata({
     title: metaTitle,
