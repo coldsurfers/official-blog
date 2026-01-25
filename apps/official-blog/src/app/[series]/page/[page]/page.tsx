@@ -1,7 +1,7 @@
 import { createBlogError } from '@/lib/error';
 import { fetchSeries } from '@/lib/fetchers';
 import { SeriesCategorySchema } from '@/lib/models/series';
-import { convertSeriesCategoryToTitle } from '@/lib/utils';
+import { seriesUtils } from '@/lib/utils';
 import { PageLayout } from '@/ui/page-layout';
 import { PostListWithPagination } from '@/ui/post-list-with-pagination';
 import { RouteLoading } from '@coldsurfers/ocean-road/next';
@@ -40,7 +40,9 @@ export default async function BlogArticleListByPage({
 
   return (
     <RouteLoading deps={[page]}>
-      <PageLayout title={convertSeriesCategoryToTitle(seriesCategoryValidation.data)}>
+      <PageLayout
+        title={seriesUtils.category.convertSeriesCategoryToTitle(seriesCategoryValidation.data)}
+      >
         <PostListWithPagination
           postItems={postItems}
           totalPage={totalPage}
