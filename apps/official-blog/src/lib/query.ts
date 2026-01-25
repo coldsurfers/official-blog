@@ -95,6 +95,22 @@ export const querySeriesItem = cache(
     lang: AppLocale;
     seriesCategory: SeriesCategory;
   }) => {
+    const statusFilter = [
+      {
+        property: 'Status',
+        status: {
+          equals: 'Published',
+        },
+      },
+    ];
+    if (isDevMode) {
+      statusFilter.push({
+        property: 'Status',
+        status: {
+          equals: 'Reviewing',
+        },
+      });
+    }
     const filter: QueryDatabaseParameters['filter'] = {
       and: [
         {
@@ -106,10 +122,7 @@ export const querySeriesItem = cache(
           },
         },
         {
-          property: 'Status',
-          status: {
-            equals: 'Published',
-          },
+          or: statusFilter,
         },
         {
           property: 'lang',
