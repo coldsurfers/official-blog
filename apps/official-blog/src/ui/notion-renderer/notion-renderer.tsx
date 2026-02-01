@@ -11,8 +11,30 @@ import { type MapImageUrlFn, NotionRenderer as NR, type NotionComponents } from 
 import 'react-notion-x/src/styles.css';
 import { Tweet as TweetEmbed } from 'react-tweet';
 
+const NOTION_IMAGE_HOST = 'https://prod-files-secure.s3.us-west-2.amazonaws.com';
+
 function isNotionImage(url: string) {
-  return url.startsWith('https://prod-files-secure.s3.us-west-2.amazonaws.com');
+  return url.startsWith(NOTION_IMAGE_HOST);
+}
+
+function convertAttachmentUrl(attachmentUrl: string): string | null {
+  try {
+    const urlStr = attachmentUrl.replace('attachment:', '');
+    const [fileId, filenamePart] = urlStr.split(':');
+
+    if (!fileId || !filenamePart) return null;
+
+    const [filename, queryString] = filenamePart.split('?');
+    const params = new URLSearchParams(queryString);
+    const spaceId = params.get('spaceId');
+
+    if (!spaceId) return null;
+
+    return `${NOTION_IMAGE_HOST}/${spaceId}/${fileId}/${filename}`;
+  } catch (error) {
+    console.error('Failed to convert attachment URL:', error);
+    return null;
+  }
 }
 
 const Code = dynamic(
@@ -142,10 +164,23 @@ export const NotionRenderer = ({ recordMap }: { recordMap: ExtendedRecordMap }) 
     if (!url) {
       return '';
     }
-    if (isNotionImage(url)) {
-      return `/api/notion-image-proxy?url=${encodeURIComponent(url)}&id=${block.id}`;
+
+    let finalUrl = url;
+
+    // attachment: 형식 변환 (mapImageUrl 사용 시 필수)
+    if (url.startsWith('attachment:')) {
+      const converted = convertAttachmentUrl(url);
+      if (converted) {
+        finalUrl = converted;
+      }
     }
-    return url;
+
+    // Notion 이미지는 프록시를 통해 제공
+    if (isNotionImage(finalUrl)) {
+      return `/api/notion-image-proxy?url=${encodeURIComponent(finalUrl)}&id=${block.id}`;
+    }
+
+    return finalUrl;
   }, []);
 
   return (
